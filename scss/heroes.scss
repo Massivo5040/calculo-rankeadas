@@ -28,17 +28,7 @@
     }
 
     p {
-      padding: 5px;
-      text-align: right;
-      background-image: linear-gradient(
-        to right,
-        map-get(c.$xp-bar, filled) 0%,
-        map-get(c.$xp-bar, filled) 75%,
-        map-get(c.$xp-bar, blank) 75%,
-        map-get(c.$xp-bar, blank) 100%
-      );
-      border: 4px solid map-get(c.$xp-bar, border-color);
-      border-radius: 10px;
+      font-size: 1.3rem;
     }
     figure {
       width: 90%;

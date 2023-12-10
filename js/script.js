@@ -1,10 +1,12 @@
 const img_hero = document.querySelector("#img_hero");
 const name_hero = document.querySelector("#name_hero");
 const role_hero = document.querySelector("#class_hero");
-const exp_hero = document.querySelector("#exp_hero");
+const wins_hero = document.querySelector("#wins_hero");
+const loses_hero = document.querySelector("#loses_hero");
 const heroes = document.querySelector("#heroes");
 const reader = new FileReader();
 
+let count = 0;
 document.addEventListener("onload", verify_localStorage());
 
 function verify_localStorage() {
@@ -15,6 +17,12 @@ function verify_localStorage() {
   localStorage.removeItem("numProcesso");
 
   for (let item in localStorage) {
+    if (localStorage.hasOwnProperty("count")) {
+      count = localStorage.getItem("count");
+      break;
+    } else {
+      localStorage.setItem("count", count);
+    }
     if (localStorage.hasOwnProperty(item)) {
       heroes.innerHTML += localStorage[item];
     }
@@ -26,7 +34,6 @@ async function load_img() {
 
   return new Promise((resolve, reject) => {
     reader.onload = () => {
-      console.log("Deu certo!");
       resolve(reader.result);
     };
     reader.onerror = reject;
@@ -37,8 +44,9 @@ async function add_hero() {
   if (
     img_hero.value == "" ||
     name_hero.value == "" ||
-    class_hero.value == "" ||
-    exp_hero.value == ""
+    role_hero.value == "" ||
+    wins_hero.value == "" ||
+    loses_hero.value == ""
   ) {
     alert("Preencha todos os campos");
     return;
@@ -47,18 +55,19 @@ async function add_hero() {
   let img = await load_img();
   let name = name_hero.value;
   let role = role_hero.value;
-  let exp = exp_hero.value;
+  let wins = wins_hero.value;
+  let loses = loses_hero.value;
+  let balance = wins - loses;
 
   const tags = {
     tag1: { name: "img", value: img },
     tag2: { name: "h3", value: name },
     tag3: { name: "h4", value: role },
-    tag4: { name: "p", value: exp },
+    tag4: { name: "p", value: balance },
   };
-  tags.xp = xp_bar(tags.tag4.value);
 
   create_element(tags);
-  let count = 0;
+
   localStorage.setItem(
     `hero${count}`,
     document.querySelectorAll(".hero")[count].outerHTML
@@ -86,128 +95,51 @@ function create_element(tags) {
   div.appendChild(elemento3);
 
   let elemento4 = document.createElement(tags.tag4.name);
-  const xp_inf = xp_bar(tags.tag4.value);
-  elemento4.textContent = xp_inf[0];
-  elemento4.style.backgroundImage = `linear-gradient(${xp_inf[1]})`;
+  elemento4.textContent = `Seu saldo de herói (vitórias - derrotas) é: ${tags.tag4.value}`;
+  let balance_inf = balance_calc(tags.tag4.value);
   div.appendChild(elemento4);
 
   let figure = document.createElement("figure");
   container.appendChild(figure);
   let tag_img = document.createElement("img");
   figure.appendChild(tag_img);
-  tag_img.src = xp_inf[2][0];
+  tag_img.src = balance_inf[1][0];
   let elo = document.createElement("figcaption");
   figure.appendChild(elo);
-  elo.textContent = xp_inf[2][1];
+  elo.textContent = balance_inf[1][1];
 
   heroes.appendChild(container);
 }
 
-function xp_bar(xp) {
-  if (xp <= 1000) {
+function balance_calc(balance) {
+  if (balance <= 10) {
     // Ferro
-    let nxp = (xp - 1) / (1000 - 1);
-    let percent = Math.floor(nxp * 100);
-    let gradient = `to right,
-    greenyellow 0%,
-    greenyellow ${percent}%,
-    gray ${percent}%,
-    gray 100%`;
-
     let imagem = ["./img/ferro.png", "Ferro"];
-    xp = `${xp}/1000`;
-    return [xp, gradient, imagem];
-  } else if (xp <= 2000) {
+    return [balance, imagem];
+  } else if (balance <= 20) {
     // Bronze
-    let nxp = (xp - 1001) / (2000 - 1001);
-    let percent = Math.floor(nxp * 100);
-    let gradient = `to right,
-    greenyellow 0%,
-    greenyellow ${percent}%,
-    gray ${percent}%,
-    gray 100%`;
-
-    let imagem = ["./img/bronze.png", "Bronze"];
-    xp = `${xp}/2000`;
-    return [xp, gradient, imagem];
-  } else if (xp <= 5000) {
+    let imagem = ["./img/bronze.png", "bronze"];
+    return [balance, imagem];
+  } else if (balance <= 50) {
     // Prata
-    let nxp = (xp - 2001) / (5000 - 2001);
-    let percent = Math.floor(nxp * 100);
-    console.log(percent);
-    let gradient = `to right,
-    greenyellow 0%,
-    greenyellow ${percent}%,
-    gray ${percent}%,
-    gray 100%`;
-
-    let imagem = ["./img/prata.png", "Prata"];
-    xp = `${xp}/5000`;
-    return [xp, gradient, imagem];
-  } else if (xp <= 7000) {
+    let imagem = ["./img/prata.png", "prata"];
+    return [balance, imagem];
+  } else if (balance <= 80) {
     // Ouro
-    let nxp = (xp - 5001) / (7000 - 5001);
-    let percent = Math.floor(nxp * 100);
-    let gradient = `to right,
-    greenyellow 0%,
-    greenyellow ${percent}%,
-    gray ${percent}%,
-    gray 100%`;
-
-    let imagem = ["./img/ouro.png", "Ouro"];
-    xp = `${xp}/7000`;
-    return [xp, gradient, imagem];
-  } else if (xp <= 8000) {
-    // Platina
-    let nxp = (xp - 7001) / (8000 - 7001);
-    let percent = Math.floor(nxp * 100);
-    console.log(`my percent: ${percent}, bing percent: ${percent1}`);
-    let gradient = `to right,
-    greenyellow 0%,
-    greenyellow ${percent}%,
-    gray ${percent}%,
-    gray 100%`;
-
-    let imagem = ["./img/platina.png", "Platina"];
-    xp = `${xp}/8000`;
-    return [xp, gradient, imagem];
-  } else if (xp <= 9000) {
-    // Ascendente
-    let nxp = (xp - 8001) / (9000 - 8001);
-    let percent = Math.floor(nxp * 100);
-    let gradient = `to right,
-    greenyellow 0%,
-    greenyellow ${percent}%,
-    gray ${percent}%,
-    gray 100%`;
-
-    let imagem = ["./img/ascendente.png", "Ascendente"];
-    xp = `${xp}/9000`;
-    return [xp, gradient, imagem];
-  } else if (xp <= 10000) {
+    let imagem = ["./img/ouro.png", "ouro"];
+    return [balance, imagem];
+  } else if (balance <= 90) {
+    // Diamante
+    let imagem = ["./img/diamante.png", "diamante"];
+    return [balance, imagem];
+  } else if (balance <= 100) {
+    // Lendário
+    let imagem = ["./img/lendario.png", "lendario"];
+    return [balance, imagem];
+  } else if (balance >= 101) {
     // Imortal
-    let nxp = (xp - 9001) / (10000 - 9001);
-    let percent = Math.floor(nxp * 100);
-    let gradient = `to right,
-    greenyellow 0%,
-    greenyellow ${percent}%,
-    gray ${percent}%,
-    gray 100%`;
-
-    let imagem = ["./img/imortal.png", "Imortal"];
-    xp = `${xp}/10000`;
-    return [xp, gradient, imagem];
-  } else if (xp >= 10001) {
-    // Radiante
-    let gradient = `to right,
-    greenyellow 0%,
-    greenyellow 100%,
-    gray 100%,
-    gray 100%`;
-
-    let imagem = ["./img/radiante.png", "Radiante"];
-    xp = `${xp}`;
-    return [xp, gradient, imagem];
+    let imagem = ["./img/imortal.png", "imortal"];
+    return [balance, imagem];
   }
 }
 

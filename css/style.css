@@ -45,11 +45,7 @@ form input {
   font-size: 2rem;
 }
 #heroes .hero p {
-  padding: 5px;
-  text-align: right;
-  background-image: linear-gradient(to right, greenyellow 0%, greenyellow 75%, gray 75%, gray 100%);
-  border: 4px solid springgreen;
-  border-radius: 10px;
+  font-size: 1.3rem;
 }
 #heroes .hero figure {
   width: 90%;
