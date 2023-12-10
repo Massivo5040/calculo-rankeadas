@@ -9,9 +9,26 @@
   <body>
     <h1>CRIE SEU HERÓI</h1>
     <form>
-      <input type="file" id="img" />
+      <div class="form-group">
+        <label for="img_hero">Coloque a imagem do seu herói:</label>
+        <input type="file" id="img_hero" />
+      </div>
+      <div class="form-group">
+        <label for="name_hero">Coloque o nome do seu herói:</label>
+        <input type="text" id="name_hero" />
+      </div>
+      <div class="form-group">
+        <label for="class_hero">Coloque a classe do seu herói:</label>
+        <input type="text" id="class_hero" />
+      </div>
+      <div class="form-group">
+        <label for="exp_hero">Coloque a experiência(XP) do seu herói:</label>
+        <input type="number" id="exp_hero" />
+      </div>
     </form>
     <button onclick="add_hero()">Adicionar herói</button>
-    <script src="./js/script.js"></script>
+    <button onclick="empty_list()">Esvaziar lista</button>
+    <section id="heroes"></section>
   </body>
+  <script src="./js/script.js"></script>
 </html>

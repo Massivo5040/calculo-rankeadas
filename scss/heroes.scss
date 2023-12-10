@@ -1,0 +1,53 @@
+@use "fonts" as f;
+@use "colors" as c;
+
+#heroes {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: c.$heroes-bgc;
+  border: 2px solid c.$border-color;
+  .hero {
+    display: grid;
+    grid-template-columns: 2fr 3fr 2fr;
+    column-gap: 30px;
+    padding: 15px;
+    border: 2px solid c.$border-color;
+    img {
+      width: 100%;
+    }
+    h3 {
+      font-size: 2.5rem;
+    }
+    h4 {
+      margin: 15px 0;
+      font-size: 2rem;
+    }
+
+    p {
+      padding: 5px;
+      text-align: right;
+      background-image: linear-gradient(
+        to right,
+        map-get(c.$xp-bar, filled) 0%,
+        map-get(c.$xp-bar, filled) 75%,
+        map-get(c.$xp-bar, blank) 75%,
+        map-get(c.$xp-bar, blank) 100%
+      );
+      border: 4px solid map-get(c.$xp-bar, border-color);
+      border-radius: 10px;
+    }
+    figure {
+      width: 90%;
+      float: right;
+      margin: 0 auto;
+      text-align: center;
+      figcaption {
+        font-size: 1.5rem;
+      }
+    }
+  }
+}

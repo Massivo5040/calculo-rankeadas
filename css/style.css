@@ -1,18 +1,103 @@
 @import url("https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap");
+form {
+  width: 60%;
+}
+form .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+form label {
+  font-size: 1.3rem;
+}
+form input {
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+  font-family: "Silkscreen", sans-serif;
+  font-weight: 400;
+}
+
+#heroes {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: seagreen;
+  border: 2px solid black;
+}
+#heroes .hero {
+  display: grid;
+  grid-template-columns: 2fr 3fr 2fr;
+  column-gap: 30px;
+  padding: 15px;
+  border: 2px solid black;
+}
+#heroes .hero img {
+  width: 100%;
+}
+#heroes .hero h3 {
+  font-size: 2.5rem;
+}
+#heroes .hero h4 {
+  margin: 15px 0;
+  font-size: 2rem;
+}
+#heroes .hero p {
+  padding: 5px;
+  text-align: right;
+  background-image: linear-gradient(to right, greenyellow 0%, greenyellow 75%, gray 75%, gray 100%);
+  border: 4px solid springgreen;
+  border-radius: 10px;
+}
+#heroes .hero figure {
+  width: 90%;
+  float: right;
+  margin: 0 auto;
+  text-align: center;
+}
+#heroes .hero figure figcaption {
+  font-size: 1.5rem;
+}
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-
-body {
-  background-color: blueviolet;
   font-family: "Silkscreen", sans-serif;
   font-weight: 400;
 }
 
-button {
-  padding: 10px;
-  border: none;
+body {
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+  background-color: azure;
 }
+body h1 {
+  font-size: 4rem;
+  text-align: center;
+}
+
+button {
+  margin: 30px 0;
+  padding: 10px;
+  font-size: 2rem;
+  background-color: lightcoral;
+  border: 2px solid black;
+  color: seashell;
+}
+button:hover {
+  cursor: pointer;
+  background-color: seashell;
+  border: 2px solid antiquewhite;
+  color: lightcoral;
+  transform: scale(1.1);
+}
+button:active {
+  background-color: black;
+}
+
+/*# sourceMappingURL=style.css.map */

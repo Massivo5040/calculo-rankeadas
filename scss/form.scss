@@ -1,0 +1,19 @@
+@use "fonts" as f;
+
+form {
+  width: 60%;
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  label {
+    font-size: 1.3rem;
+  }
+  input {
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+    font-family: f.$font1;
+    font-weight: 400;
+  }
+}

@@ -1,0 +1,43 @@
+@use "fonts" as f;
+@use "colors" as c;
+@use "form";
+@use "heroes";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: f.$font1;
+  font-weight: 400;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+  background-color: azure;
+  h1 {
+    font-size: 4rem;
+    text-align: center;
+  }
+}
+
+button {
+  margin: 30px 0;
+  padding: 10px;
+  font-size: 2rem;
+  background-color: map-get(c.$btn-colors, bgc);
+  border: 2px solid map-get(c.$btn-colors, border-color);
+  color: map-get(c.$btn-colors, font-color);
+  &:hover {
+    cursor: pointer;
+    background-color: map-get(c.$inverted-btn-colors, bgc);
+    border: 2px solid map-get(c.$inverted-btn-colors, border-color);
+    color: map-get(c.$inverted-btn-colors, font-color);
+    transform: scale(1.1);
+  }
+  &:active {
+    background-color: map-get(c.$inverted-btn-colors, active-bgc);
+  }
+}
