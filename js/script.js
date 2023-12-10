@@ -12,8 +12,7 @@ function verify_localStorage() {
     console.log("local storage vazio");
     return;
   }
-  if (localStorage.hasOwnProperty(numProcesso))
-    localStorage.removeItem(numProcesso);
+  localStorage.removeItem(numProcesso);
 
   for (let item in localStorage) {
     if (localStorage.hasOwnProperty(item)) {
